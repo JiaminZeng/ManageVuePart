@@ -301,7 +301,14 @@ export default {
           alert("操作成功！")
         } else {
           alert("操作失败！")
+          return
         }
+        that.dataList.zwlb=''
+        that.dataList.zwmc=''
+        that.dataList.xz=''
+        that.dataList.gzdz=''
+        that.dataList.nr=''
+        that.dataList.qtxx=''
         that.getOptionsForm()
         that.getForm()
 

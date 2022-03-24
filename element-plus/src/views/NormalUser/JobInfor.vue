@@ -62,7 +62,7 @@
         <el-table-column prop="lxdh" label="联系电话" width="100"/>
         <el-table-column fixed="right" label="操作" width="120">
           <template #default="scope">
-            <el-button type="text" size="small" @click="createResume(scope.$index)">交流</el-button>
+            <el-button type="text" size="small" @click="link(scope.$index)">交流</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -87,6 +87,11 @@
         <el-table-column prop="zyyw" label="主要业务" width="100"/>
         <el-table-column prop="djsj" label="登记时间" width="100"/>
         <el-table-column prop="lxdh" label="联系电话" width="100"/>
+        <el-table-column fixed="right" label="操作" width="120">
+          <template #default="scope">
+            <el-button type="text" size="small" @click="link(scope.$index)">交流</el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
     <div style="margin: 60px 60px"></div>
@@ -214,6 +219,22 @@ export default {
         responseType: 'json'
       }).then(function (response) {
         that.db = response.data
+      })
+    },
+    link(inx) {
+      let that = this
+      this.$axios.request({
+        url: this.$url + 'create_link/',
+        method: 'POST',
+        data: {'user1': this.db[inx]['fbz'], 'token': this.$store.state.token,},
+        responseType: 'json'
+      }).then(function (response) {
+        let code = response.data['code']
+        if (code !== 1) {
+          alert("操作失败！")
+          return
+        }
+        that.$router.replace({name: 'Communication'})
       })
     },
     tableRowClassName({row}) {

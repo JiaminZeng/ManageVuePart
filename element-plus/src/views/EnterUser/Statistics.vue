@@ -1,27 +1,169 @@
 <template>
-  <div>
-    <div style="margin-left: 50px">
-      <h1>企业统计信息</h1>
-      <img src="../../assets/1.png" style="width: 450px; height: 270px;margin-left: 100px"/>
-      <img src="../../assets/2.png" style="width: 450px; height: 270px;margin-left: 100px"/>
-    </div>
-    <el-divider></el-divider>
-    <div style="margin-left: 50px">
-      <h1>行业统计信息</h1>
-      <img src="../../assets/3.png" style="width: 350px; height: 220px;margin-left: 60px"/>
-      <img src="../../assets/4.png" style="width: 350px; height: 220px;margin-left: 60px"/>
-      <img src="../../assets/5.png" style="width: 350px; height: 220px;margin-left: 60px"/>
-    </div>
-    <el-divider></el-divider>
-  </div>
+  <el-row>
+    <el-col :span="2"></el-col>
+    <el-col :span="9">
+      <div id="Chart1" :style="{ width: '100%', height: '300px' }"></div>
+    </el-col>
+    <el-col :span="2"></el-col>
+    <el-col :span="9">
+      <div id="Chart2" :style="{ width: '100%', height: '300px' }"></div>
+    </el-col>
+    <el-col :span="2"></el-col>
+
+  </el-row>
+  <el-divider></el-divider>
+  <el-row>
+    <el-col :span="2"></el-col>
+
+    <el-col :span="5">
+      <div id="Chart3" :style="{ width: '100%', height: '250px' }"></div>
+    </el-col>
+    <el-col :span="2"></el-col>
+
+    <el-col :span="5">
+      <div id="Chart4" :style="{ width: '100%', height: '250px' }"></div>
+    </el-col>
+    <el-col :span="2"></el-col>
+
+    <el-col :span="5">
+      <div id="Chart5" :style="{ width: '100%', height: '250px' }"></div>
+    </el-col>
+    <el-col :span="2"></el-col>
+
+  </el-row>
 </template>
 
 <script>
+
 export default {
-  name: "Statistics"
-}
+  data() {
+    return {
+      'user': [],
+      'zpxxsl': [],
+      'jlsjsl': [],
+      'hy': [],
+      'zwgs': [],
+      'jltd': [],
+      'zdtd': [],
+    };
+  },
+  mounted() {
+    this.send()
+  },
+  methods: {
+    send() {
+      let that = this
+      this.$axios.request({
+        url: this.$url + 'get_statistics/',
+        method: 'POST',
+        data: {
+          'token': this.$store.state.token,
+        },
+        responseType: 'json'
+      }).then(function (response) {
+        that.user = response.data['user']
+        that.zpxxsl = response.data['zpxxsl']
+        that.jlsjsl = response.data['jlsjsl']
+        that.hy = response.data['hy']
+        that.zwgs = response.data['zwgs']
+        that.jltd = response.data['jltd']
+        that.zdtd = response.data['zdtd']
+        that.init()
+      })
+    },
+    init() {
+      let myChart1 = this.$echarts.init(document.getElementById("Chart1"), 'light');
+      let myChart2 = this.$echarts.init(document.getElementById("Chart2"), 'light');
+      let myChart3 = this.$echarts.init(document.getElementById("Chart3"), 'light');
+      let myChart4 = this.$echarts.init(document.getElementById("Chart4"), 'light');
+      let myChart5 = this.$echarts.init(document.getElementById("Chart5"), 'light');
+      myChart1.setOption({
+        title: {text: "公司成员招聘发布数量"},
+        tooltip: {},
+        xAxis: {
+          data: this.user,
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "发布数量",
+            type: "bar",
+            data: this.zpxxsl,
+            color: '#006BB0',
+          },
+        ],
+      });
+      myChart2.setOption({
+        title: {text: "公司成员简历收集数量"},
+        tooltip: {},
+        xAxis: {
+          data: this.user,
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "收集数量",
+            type: "bar",
+            data: this.jlsjsl,
+            color: '#EFA90D',
+          },
+        ],
+      });
+      myChart3.setOption({
+        title: {text: "行业招聘信息总发布数量"},
+        tooltip: {},
+        xAxis: {
+          data: this.hy
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "发布数量",
+            type: "bar",
+            data: this.zwgs,
+            color: '#1D1815',
+          },
+        ],
+      });
+      myChart4.setOption({
+        title: {text: "行业招聘简历总收集数量"},
+        tooltip: {},
+        xAxis: {
+          data: this.hy
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "收集数量",
+            type: "bar",
+            data: this.jltd,
+            color: '#059341',
+          },
+        ],
+      });
+      myChart5.setOption({
+        title: {text: "行业单岗位最大简历收集数量"},
+        tooltip: {},
+        xAxis: {
+          data: this.hy
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "收集数量",
+            type: "bar",
+            data: this.zdtd,
+            color: '#DC2F1F',
+          },
+        ],
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
-
+.chart {
+  height: 400px;
+}
 </style>

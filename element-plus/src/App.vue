@@ -43,6 +43,8 @@
     <el-main>
       <router-view/>
     </el-main>
+    <el-divider></el-divider>
+
     <el-footer height="40px" style="color: #909399; text-align: center;">©2022 LYH Part-Time Management System
     </el-footer>
   </el-container>
