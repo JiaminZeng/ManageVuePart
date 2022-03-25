@@ -149,7 +149,7 @@
     </div>
     <div v-else-if="show_type===3" style="margin-left: 150px;margin-right: 100px">
       <h1 style="color: #6481bd">未回复:</h1>
-      <template v-for="(item,inx) in this.whf" :key="item.username">
+      <template v-for="(item,inx) in this.whf" :key="item">
         <el-descriptions
             direction="vertical"
             :column="4"
@@ -186,7 +186,7 @@
       <el-divider></el-divider>
 
       <h1 style="color: #85d500">已回复:</h1>
-      <template v-for="item in this.yhf" :key="item.username">
+      <template v-for="item in this.yhf" :key="item">
         <el-descriptions
             direction="vertical"
             :column="4"
@@ -303,12 +303,12 @@ export default {
           alert("操作失败！")
           return
         }
-        that.dataList.zwlb=''
-        that.dataList.zwmc=''
-        that.dataList.xz=''
-        that.dataList.gzdz=''
-        that.dataList.nr=''
-        that.dataList.qtxx=''
+        that.dataList.zwlb = ''
+        that.dataList.zwmc = ''
+        that.dataList.xz = ''
+        that.dataList.gzdz = ''
+        that.dataList.nr = ''
+        that.dataList.qtxx = ''
         that.getOptionsForm()
         that.getForm()
 
@@ -318,9 +318,9 @@ export default {
       let zwid = this.tableData[inx]['id']
       this.getResume(1, zwid)
       this.getResume(2, zwid)
-      this.timer = setTimeout(() => {   //设置延迟执行
+      setTimeout(() => {
         this.show_type = 3
-      }, 200);
+      }, 500);
     },
     getResume(state, zwid) {
       let that = this
@@ -330,18 +330,17 @@ export default {
         data: {'type': 1, 'state': state, 'token': this.$store.state.token, 'zwid': zwid},
         responseType: 'json'
       }).then(function (response) {
-        if (state === 1)
-          that.whf = response.data
-        else
-          that.yhf = response.data
+        that.whf = response.data['whf']
+        that.yhf = response.data['yhf']
       })
     },
     updateResume(inx, tp) {
+      let zwid = this.whf[inx]['zwid']
       let sent_data = {
         'token': this.$store.state.token,
         'type': 2,
         'hf': this.hfxx,
-        'id': this.tableData[inx]['id'],
+        'id': this.whf[inx]['id'],
         'zt': ''
       }
       if (tp === 1)
@@ -361,6 +360,10 @@ export default {
           alert("操作失败！")
         }
       })
+      setTimeout(() => {
+        this.getResume(1, zwid)
+      }, 300);
+      this.$forceUpdate
     },
   }
 }

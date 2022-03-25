@@ -13,8 +13,8 @@ const app = createApp(App)
 app.config.globalProperties.$echarts = echarts;
 app.config.globalProperties.$cookie = VueCookies
 app.config.globalProperties.$axios = axios
-app.config.globalProperties.$url = 'http://127.0.0.1:8000/';
-// app.config.globalProperties.$url = 'http://123.60.74.235:8000/';
+// app.config.globalProperties.$url = 'http://127.0.0.1:8000/';
+app.config.globalProperties.$url = 'http://123.60.74.235:8000/';
 
 app.component('v-chart', ECharts)
 app.use(store).use(ECharts).use(router).use(ElementPlus).mount('#app')
