@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="margin: 50px 50px"><h1 style="text-align: center;font-size: 25px">企业管理用户注册</h1></div>
+    <div style="margin: 50px 50px"><h1 style="text-align: center;font-size: 25px">个人信息</h1></div>
     <el-row :gutter="0" justify="center">
       <el-col :span="6">
         <el-form status-icon
