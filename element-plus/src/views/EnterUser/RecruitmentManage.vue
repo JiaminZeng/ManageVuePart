@@ -274,7 +274,7 @@ export default {
       this.$axios.request({
         url: this.$url + 'get_job/',
         method: 'POST',
-        data: {'type': 1},
+        data: {'type': 1, 'token': this.$store.state.token},
         responseType: 'json'
       }).then(function (response) {
         that.tableData = response.data

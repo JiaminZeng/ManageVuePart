@@ -1,36 +1,13 @@
 <template>
-  <el-row>
-    <el-col :span="2"></el-col>
-    <el-col :span="9">
-      <div id="Chart1" :style="{ width: '100%', height: '300px' }"></div>
-    </el-col>
-    <el-col :span="2"></el-col>
-    <el-col :span="9">
-      <div id="Chart2" :style="{ width: '100%', height: '300px' }"></div>
-    </el-col>
-    <el-col :span="2"></el-col>
-
-  </el-row>
+  <div id="Chart1" :style="{ width: '100%', height: '300px',border: '2px'}"></div>
   <el-divider></el-divider>
-  <el-row>
-    <el-col :span="2"></el-col>
-
-    <el-col :span="5">
-      <div id="Chart3" :style="{ width: '100%', height: '250px' }"></div>
-    </el-col>
-    <el-col :span="2"></el-col>
-
-    <el-col :span="5">
-      <div id="Chart4" :style="{ width: '100%', height: '250px' }"></div>
-    </el-col>
-    <el-col :span="2"></el-col>
-
-    <el-col :span="5">
-      <div id="Chart5" :style="{ width: '100%', height: '250px' }"></div>
-    </el-col>
-    <el-col :span="2"></el-col>
-
-  </el-row>
+  <div id="Chart2" :style="{ width: '100%', height: '300px',border: '2px' }"></div>
+  <el-divider></el-divider>
+  <div id="Chart3" :style="{ width: '100%', height: '250px',border: '2px' }"></div>
+  <el-divider></el-divider>
+  <div id="Chart4" :style="{ width: '100%', height: '250px',border: '2px' }"></div>
+  <el-divider></el-divider>
+  <div id="Chart5" :style="{ width: '100%', height: '250px',border: '2px' }"></div>
 </template>
 
 <script>
@@ -88,6 +65,8 @@ export default {
           {
             name: "发布数量",
             type: "bar",
+            barWidth: 30,
+
             data: this.zpxxsl,
             color: '#006BB0',
           },
@@ -104,6 +83,7 @@ export default {
           {
             name: "收集数量",
             type: "bar",
+            barWidth: 30,
             data: this.jlsjsl,
             color: '#EFA90D',
           },
@@ -120,6 +100,7 @@ export default {
           {
             name: "发布数量",
             type: "bar",
+            barWidth: 30,
             data: this.zwgs,
             color: '#1D1815',
           },
@@ -136,6 +117,7 @@ export default {
           {
             name: "收集数量",
             type: "bar",
+            barWidth: 30,
             data: this.jltd,
             color: '#059341',
           },
@@ -152,6 +134,7 @@ export default {
           {
             name: "收集数量",
             type: "bar",
+            barWidth: 30,
             data: this.zdtd,
             color: '#DC2F1F',
           },
