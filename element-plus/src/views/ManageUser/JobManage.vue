@@ -14,7 +14,6 @@
         <el-table-column prop="nr" label="职位内容" width="100"/>
         <el-table-column prop="xz" label="薪资" width="100"/>
         <el-table-column prop="gzdz" label="工作地址" width="100"/>
-        <el-table-column prop="nr" label="内容" width="100"/>
         <el-table-column prop="qtxx" label="其它信息" width="100"/>
         <el-table-column prop="fbz" label="发布者" width="100"/>
         <el-table-column prop="fbzyhm" label="发布者用户名" width="100"/>
@@ -35,7 +34,6 @@
         <el-table-column prop="nr" label="职位内容" width="100"/>
         <el-table-column prop="xz" label="薪资" width="100"/>
         <el-table-column prop="gzdz" label="工作地址" width="100"/>
-        <el-table-column prop="nr" label="内容" width="100"/>
         <el-table-column prop="qtxx" label="其它信息" width="100"/>
         <el-table-column prop="fbz" label="发布者" width="100"/>
         <el-table-column prop="fbzyhm" label="发布者用户名" width="140"/>

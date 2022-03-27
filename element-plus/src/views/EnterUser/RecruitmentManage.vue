@@ -108,12 +108,6 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="nr" label="内容" width="100">
-          <template #default="scope">
-            <el-input v-model="tableData[scope.$index].nr"/>
-          </template>
-        </el-table-column>
-
         <el-table-column prop="qtxx" label="其它信息" width="100">
           <template #default="scope">
             <el-input v-model="tableData[scope.$index].qtxx"/>
