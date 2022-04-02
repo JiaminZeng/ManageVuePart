@@ -18,7 +18,9 @@
         <template v-else-if="type === 2">
           <el-menu-item :index="'/recruitment'">招聘信息</el-menu-item>
           <el-menu-item :index="'/enter'">信息管理</el-menu-item>
-          <el-menu-item :index="'/user_validate'">注册审核</el-menu-item>
+          <div v-if="this.$store.state.yhjb===1">
+            <el-menu-item :index="'/user_validate'">注册审核</el-menu-item>
+          </div>
           <el-menu-item :index="'/statistics'">数据统计</el-menu-item>
           <el-menu-item :index="'/communication'">消息界面</el-menu-item>
           <div style="margin: 12px 0 0 700px">
@@ -59,7 +61,7 @@ export default {
   computed: {
     type() {
       return this.$store.state.type || ''
-    }
+    },
   },
   methods: {
     out() {
